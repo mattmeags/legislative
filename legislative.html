@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="jquery-2.2.3.min.js"></script>
+        <script src="handlebars-v4.0.5.js"></script>
+        <script src="legislative.js"></script>
+    </head>
+
+    <!--view by states, view by party-->
+    <body>
+        <div id="content">
+
+        </div>
+
+    </body>
+
+    <script id="entry-template" type="text/x-handlebars-template">
+        {{state_name}}
+        {{#each results}}
+            {{first_name}} {{last_name}} {{party}}</br>
+        {{/each}}
+    </script>
+
+</html>
