@@ -3,6 +3,18 @@
         <script src="jquery-2.2.3.min.js"></script>
         <script src="handlebars-v4.0.5.js"></script>
         <script src="legislative.js"></script>
+        <style>
+            .block {
+                display: flex;
+                flex-direction: column;
+            }
+            ._senate {
+                order: 1;
+            }
+            ._house {
+                order: 2;
+            }
+        </style>
     </head>
 
     <!--view by states, view by party-->
@@ -14,10 +26,21 @@
     </body>
 
     <script id="entry-template" type="text/x-handlebars-template">
-        {{state_name}}
-        {{#each results}}
-            {{first_name}} {{last_name}} {{party}}</br>
-        {{/each}}
+        <div {{bind-attr id=results.state_name}} class="block">
+            {{results.state_name}}
+            {{#each results}}
+                {{#if_eq chamber 'senate'}}
+                    <div class= "_senate">
+                        {{first_name}} {{last_name}} {{party}} {{chamber}}</br>
+                    </div>
+                {{/if_eq}}
+                {{#if_eq chamber 'house'}}
+                    <div class= "_house">
+                        {{first_name}} {{last_name}} {{party}} {{chamber}}</br>
+                    </div>
+                {{/if_eq}}
+            {{/each}}
+        </div>
     </script>
 
 </html>
