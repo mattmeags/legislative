@@ -27,7 +27,7 @@
 
     <script id="entry-template" type="text/x-handlebars-template">
         <div {{bind-attr id=results.state_name}} class="block">
-            {{results.state_name}}
+            {{state}}
             {{#each results}}
                 {{#if_eq chamber 'senate'}}
                     <div class= "_senate">

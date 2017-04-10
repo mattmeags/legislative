@@ -5,8 +5,8 @@ var legislative = {
     states : {
         AL: 'Alabama',
         AK: 'Alaska',
-        AZ: 'Arizona'
-
+        AZ: 'Arizona',
+        IN: 'Indiana'
     },
 
     init: function() {
@@ -26,22 +26,32 @@ var legislative = {
         console.log('or is this first?');
         $.when(
 
-            $.each(legislative.states, function(key, value){
+            /*$.each(legislative.states, function(key, value){
                 $.get('https://congress.api.sunlightfoundation.com/legislators?state=' + key, function(data){
                     //alert('success');
                     console.log(data);
                     legislative.stateObjects.push(data);
                 })
-            })
-            /*$.get('https://congress.api.sunlightfoundation.com/legislators?state=IN', function(data){
+            })*/
+            $.get('https://congress.api.sunlightfoundation.com/legislators?state=IN', function(data){
                 //alert('success');
                 //console.log(indianaData);
+                data['state'] = legislative.states.IN;
                 legislative.stateObjects.push(data);
 
             }),
-            $.get('https://congress.api.sunlightfoundation.com/legislators?state=AL', function(alabamaData){
-                legislative.stateObjects.push(alabamaData);
-            })*/
+            $.get('https://congress.api.sunlightfoundation.com/legislators?state=AL', function(data){
+                data['state'] = legislative.states.AL;
+                legislative.stateObjects.push(data);
+            }),
+            $.get('https://congress.api.sunlightfoundation.com/legislators?state=AK', function(data){
+                data['state'] = legislative.states.AK;
+                legislative.stateObjects.push(data);
+            }),
+            $.get('https://congress.api.sunlightfoundation.com/legislators?state=AZ', function(data){
+                data['state'] = legislative.states.AZ;
+                legislative.stateObjects.push(data);
+            })
         //fires after all of the requests in when have been made
         ).then(function(){
             console.log('is this first?');
